@@ -1,0 +1,11 @@
+deepgram-sdk==3.4.0
+groq
+sounddevice
+numpy
+pyaudio
+keyboard
+pystray
+Pillow
+pyperclip
+pyautogui
+requests
