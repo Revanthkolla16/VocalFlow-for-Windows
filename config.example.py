@@ -10,7 +10,7 @@ DEEPGRAM_MODEL = "nova-2"
 DEEPGRAM_LANGUAGE = "en-IN"
 
 # Groq settings
-GROQ_MODEL = "llama-3.1-8b-instant"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_ENABLED = True
-GROQ_MODE = "grammar"  # "grammar", "transliteration", "translation", "none"
+GROQ_MODE = "auto"
 GROQ_TARGET_LANGUAGE = "English"
