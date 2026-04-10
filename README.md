@@ -4,8 +4,10 @@ VocalFlow is a system tray dictation app that allows you to cleanly inject dicta
 
 ## Features
 - **Hold-to-Talk**: Just press and hold the configured hotkey, speak, and release.
-- **Deepgram Live Streaming**: Instant and highly accurate speech-to-text transcription.
-- **Groq LLM Support**: Clean your grammar, transliterate hinglish, or translate on the fly!
+- **Deepgram Transcription**: Instant and highly accurate speech-to-text powered by Deepgram Nova-2.
+- **Groq LLM Processing**: Clean your grammar, transliterate Hinglish, or translate on the fly!
+- **Auto Mode**: Automatically detects whether your speech needs grammar fixing, transliteration, or translation — no manual mode switching needed.
+- **Live Status Overlay**: A floating on-screen pill shows real-time status (Recording → Transcribing → AI Cleaning → Done) so you always know what's happening.
 - **System Tray Agent**: Lives cleanly out of your way until you need it.
 - **Wallet Status**: View your available Deepgram or Groq balances right from the system tray menu.
 
@@ -36,9 +38,10 @@ Inside `config.py`, or accessible during runtime via the app's `Settings` menu n
 - `HOTKEY`: Your capture trigger string, eg "right alt", "left alt", "right ctrl", "caps lock".
 - `DEEPGRAM_MODEL`: Set out of the box to "nova-2".
 - `DEEPGRAM_LANGUAGE`: By default set to "en-IN".
+- `GROQ_MODEL`: The Groq LLM model to use. Default is "llama-3.3-70b-versatile".
 - `GROQ_ENABLED`: True/False on whether LLM pipelines process the transcript string.
-- `GROQ_MODE`: "grammar", "transliteration", "translation", "none" depending on the LLM capability you want executed.
-- `GROQ_TARGET_LANGUAGE`: Only used if mode is "translation".
+- `GROQ_MODE`: "auto", "grammar", "transliteration", "translation", or "none". Auto mode intelligently picks the right action per utterance.
+- `GROQ_TARGET_LANGUAGE`: Used by "translation" and "auto" modes to determine the target language.
 
 ## Project Structure
 - `config.example.py`: Environment variable placeholder file.
@@ -49,6 +52,7 @@ Inside `config.py`, or accessible during runtime via the app's `Settings` menu n
 - `deepgram_service.py`: Performs remote connections via WebSocket API for text-matching out of audio streams.
 - `groq_service.py`: Takes given sentences and forces instruction following on them via standard models.
 - `text_injector.py`: Utility managing clipboard content backing and pasting keybind strokes.
+- `overlay.py`: Floating on-screen status pill providing real-time visual feedback during processing.
 - `tray_app.py`: UI wrapper using Python PIL to establish taskbar interactivity.
 - `balance_checker.py`: Module encapsulating checking token balance off API.
 - `settings_ui.py`: Custom module invoking window logic configuration editing.

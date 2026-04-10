@@ -51,7 +51,7 @@ def open_settings():
     row += 1
 
     tk.Label(root, text="Groq Mode:").grid(row=row, column=0, sticky="w", padx=10, pady=10)
-    mode_cb = ttk.Combobox(root, textvariable=groq_mode_var, values=["grammar", "transliteration", "translation", "none"], state="readonly", width=32)
+    mode_cb = ttk.Combobox(root, textvariable=groq_mode_var, values=["auto", "grammar", "transliteration", "translation", "none"], state="readonly", width=32)
     mode_cb.grid(row=row, column=1, padx=10, pady=10)
     row += 1
 
@@ -62,7 +62,7 @@ def open_settings():
     row += 1
 
     def update_target_state(*args):
-        if groq_mode_var.get() == "translation":
+        if groq_mode_var.get() in ("translation", "auto"):
             tgt_entry.config(state="normal")
         else:
             tgt_entry.config(state="disabled")
